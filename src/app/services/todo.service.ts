@@ -14,11 +14,26 @@ export class TodoService implements ITodoService {
             title: 'Do homework',
             status: TodoStateEnum.TODO,
             description: 'do home work'
+        },
+        {
+            id: 2,
+            title: 'Do  work',
+            status: TodoStateEnum.TODO,
+            description: 'do   work'
+        },
+        {
+            id: 3,
+            title: 'Done  work',
+            status: TodoStateEnum.DONE,
+            description: 'done work'
         }
     ];
 
+    constructor() {
+    }
+    
     getTodos(): Observable<Todo[]> {
-        return of(this.mockTodos);
+        return  of(this.mockTodos);
     }
     addTodo(newTodo: Todo): Observable<number> {
         const id = this.mockTodos.length + 1;

@@ -2,15 +2,46 @@
 <app-header></app-header>
 <main>
   <router-outlet></router-outlet>
-  <div class="container">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-      <div class="card-header">Header</div>
-      <div class="card-body">
-        <h5 class="card-title">Secondary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+
+   <div class="container"  *ngIf="(todos$ | async) as result" [ngSwitch]="result.dataState" >
+    <ng-container *ngSwitchCase="DataStateEnum.LOADING">
+      Loading .....
+    </ng-container>
+    <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+      <div class="alert-danger">
+        {{result.errorMessage}}
       </div>
-    </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="DataStateEnum.LOADED">
+
+      <div class="row">
+        <div class="col">
+          <div *ngFor="let todo of result.data | filterByStatus:TodoStateEnum.TODO" class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{todo.status}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{todo.title}}</h5>
+              <p class="card-text">{{todo.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div *ngFor="let todo of result.data | filterByStatus:TodoStateEnum.DONE" class="card text-white bg-success  mb-3" style="max-width: 18rem;">
+            <div class="card-header">{{todo.status}}</div>
+            <div class="card-body">
+              <h5 class="card-title">{{todo.title}}</h5>
+              <p class="card-text">{{todo.description}}</p>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+
+
+          
+    </ng-container>
   </div>
+ 
 </main>
 
 

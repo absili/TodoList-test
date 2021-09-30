@@ -1,7 +1,6 @@
 export enum TodoStateEnum{
   TODO="todo",
-  INPROGRESS="In Progress",
-  DONE="Done"
+  DONE="done"
 }
 export class Todo {
    
@@ -14,4 +13,7 @@ export class Todo {
     
     }
   }
+  
+
+
   
