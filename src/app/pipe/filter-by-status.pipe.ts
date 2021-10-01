@@ -10,8 +10,7 @@ export class FilterByStatusPipe implements PipeTransform {
    // if (!todos) return [];
     //if (!status || status.length == 0) return todos;
   // if((todo.status === status)) return  todo; else return  null ; 
-console.log(todos);
-console.log(status);
+
 if (!todos) return [];
 if (!status || status.length == 0) return todos;
 return todos.filter((todo: any) => todo.status.indexOf(status) !=-1);

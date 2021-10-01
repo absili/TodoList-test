@@ -1,0 +1,23 @@
+{
+    "todos":  [
+        {
+            "id": 1,
+            "title": "Do homework",
+            "status": "todo",
+            "description": "do home work"
+        },
+        {
+            "id": 2,
+            "title": "Do  work",
+            "status": "todo",
+            "description": "do   work"
+        },
+        {
+            "id": 3,
+            "title": "todo  work",
+            "status":"todo",
+            "description": "todo work"
+        }
+    ]
+}
+ 

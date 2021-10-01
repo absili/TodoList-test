@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService } from 'src/app/services/todo.service';
+ 
 import { TodoStateEnum } from 'src/app/models/todo.model';
 import { map, catchError, startWith } from 'rxjs/operators';
 import { DataStateEnum } from 'src/app/state/data.state';
@@ -12,13 +12,13 @@ import { of } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private todoService: TodoService) { }
+  constructor( ) { }
 
   ngOnInit(): void {
   }
   addTodo() {
     console.log("add tod");
-    this.todoService
+   /* this.todoService
     .addTodo(
       {
         id: 3,

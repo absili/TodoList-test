@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, startWith, catchError } from 'rxjs/operators';
 import { DataStateEnum, AppDataState } from 'src/app/state/data.state';
 import { of, Observable } from 'rxjs';
-import { TodoService } from 'src/app/services/todo.service';
+import { TodoService } from 'src/app/services/todo.mock.service';
 import { TodoStateEnum, Todo } from 'src/app/models/todo.model';
 
 @Component({
