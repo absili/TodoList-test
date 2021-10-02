@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ITodoService } from './todo.service.interface';
-import { Todo, TodoStateEnum } from '../models/todo.model';
+import { Todo, TodoStatusEnum } from '../models/todo.model';
 import { Observable, of } from 'rxjs';
 
 @Injectable({
@@ -11,20 +11,20 @@ export class TodoService implements ITodoService {
     public mockTodos: Todo[] = [
         {
             id: 1,
-            title: 'Do homework',
-            status: TodoStateEnum.TODO,
+            title: 'Mock - Do homework',
+            status: TodoStatusEnum.TODO,
             description: 'do home work'
         },
         {
             id: 2,
-            title: 'Do  work',
-            status: TodoStateEnum.TODO,
+            title: 'Mock - Do  work',
+            status: TodoStatusEnum.TODO,
             description: 'do   work'
         },
         {
             id: 3,
-            title: 'Done  work',
-            status: TodoStateEnum.DONE,
+            title: 'Mock - Done  work',
+            status: TodoStatusEnum.DONE,
             description: 'done work'
         }
     ];
@@ -35,16 +35,18 @@ export class TodoService implements ITodoService {
     getTodos(): Observable<Todo[]> {
         return  of(this.mockTodos);
     }
-    addTodo(newTodo: Todo): Observable<number> {
-        const id = this.mockTodos.length + 1;
-
+    addTodo(newTodo: Todo): Observable<Todo> {
+        let dataNewTodo = new Todo (
+            this.mockTodos.length+1,
+             newTodo.title,
+             newTodo.status,
+             newTodo.description,
+        );
         // add the todo to the mock list so it is returned next time we get all todos
-        this.mockTodos.push({
-            ...newTodo,
-            id,
-        });
-
-        return of(id);
+       // this.mockTodos.push({...dataNewTodo});
+    //  this.mockTodos[ this.mockTodos.length+1]= dataNewTodo;
+      this.mockTodos = [...this.mockTodos, dataNewTodo];
+        return  of(dataNewTodo);
     }
     updateTodo(todoToUpdate: Todo): Observable<string> {
         this.mockTodos = this.mockTodos.filter((todo: Todo) => {

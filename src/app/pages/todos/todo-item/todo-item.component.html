@@ -1,0 +1,7 @@
+<div *ngIf="todo" [ngClass]="{'bg-secondary':todo.status==todoStatusEnum.TODO,'bg-success':todo.status==todoStatusEnum.DONE}" class="card text-white mb-3" style="max-width: 18rem;">
+    <div class="card-header">{{todo.id}} - {{todo.status}}</div>
+    <div class="card-body">
+        <h5 class="card-title">{{todo.title}}</h5>
+        <p class="card-text">{{todo.description}}</p>
+    </div>
+</div>

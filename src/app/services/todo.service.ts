@@ -19,8 +19,9 @@ export class TodoService implements ITodoService {
   getTodos(): import("rxjs").Observable<Todo[]> {
     return this.http.get<Todo[]>(this.host+"/todos");
   }
-  addTodo(newTodo: Todo):  Observable<number> {
-    throw new Error("Method not implemented.");
+  addTodo(newTodo: Todo):  Observable<Todo> {
+    return this.http.post<any>(this.host+"/todos", newTodo);
+    //throw new Error("Method not implemented.");
   }
   updateTodo(todoToUpdate:  Todo):  Observable<string> {
     throw new Error("Method not implemented.");

@@ -7,7 +7,7 @@ export interface ITodoService {
     getTodos(): Observable<Todo[]>;
 
     // returns observable that resolves to ID of new todo
-    addTodo(newTodo: Todo): Observable<number>;
+    addTodo(newTodo: Todo): Observable<Todo>;
 
     // returns observable that resolves to status message
     updateTodo(todoToUpdate: Todo): Observable<string>;

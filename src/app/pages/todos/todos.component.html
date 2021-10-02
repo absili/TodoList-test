@@ -1,37 +1,20 @@
-<div class="container"  *ngIf="(todos$ | async) as result" [ngSwitch]="result.dataState" >
-    <ng-container *ngSwitchCase="DataStateEnum.LOADING">
-      Loading .....
+<div class="container"  *ngIf="todosState$ | async as state" [ngSwitch]="state.dataState" >
+    <ng-container *ngSwitchCase="TodosStateEnum.INITIAL">
+      <div class="alert-info">
+        Initial State
+      </div>
     </ng-container>
-    <ng-container *ngSwitchCase="DataStateEnum.ERROR">
+    <ng-container *ngSwitchCase="TodosStateEnum.LOADING">
+      <div class="alert-info">
+        Loading .....
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="TodosStateEnum.ERROR">
       <div class="alert-danger">
-        {{result.errorMessage}}
+        {{state.errorMessage |json}}
       </div>
     </ng-container>
-    <ng-container *ngSwitchCase="DataStateEnum.LOADED">
-
-      <div class="row">
-        <div class="col">
-          <div *ngFor="let todo of result.data | filterByStatus:TodoStateEnum.TODO" class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-            <div class="card-header">{{todo.status}}</div>
-            <div class="card-body">
-              <h5 class="card-title">{{todo.title}}</h5>
-              <p class="card-text">{{todo.description}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div *ngFor="let todo of result.data | filterByStatus:TodoStateEnum.DONE" class="card text-white bg-success  mb-3" style="max-width: 18rem;">
-            <div class="card-header">{{todo.status}}</div>
-            <div class="card-body">
-              <h5 class="card-title">{{todo.title}}</h5>
-              <p class="card-text">{{todo.description}}</p>
-            </div>
-          </div>
-        </div>
-       
-      </div>
-
-
-          
+    <ng-container *ngSwitchCase="TodosStateEnum.LOADED">
+      <app-todo-list [state]="state"></app-todo-list> 
     </ng-container>
   </div>

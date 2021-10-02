@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { TodoService } from './todo.mock.service';
 import { FilterByStatusPipe } from '../pipe/filter-by-status.pipe';
-import { TodoStateEnum } from '../models/todo.model';
+import { TodoStatusEnum } from '../models/todo.model';
 
 describe('TodoMockService', () => {
   let service: TodoService;
@@ -24,7 +24,7 @@ describe('TodoMockService', () => {
     let todos : any[] = [];
     service.getTodos().subscribe(data => todos = data);
     expect(todos.length).toEqual(service.mockTodos.length);
-    const result = pipeFilter.transform(todos, TodoStateEnum.TODO);
+    const result = pipeFilter.transform(todos, TodoStatusEnum.TODO);
     expect(result.length).toEqual(2); //true
   });
 });

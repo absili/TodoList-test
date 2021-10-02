@@ -1,4 +1,4 @@
-export enum TodoStateEnum{
+export enum TodoStatusEnum{
   TODO="todo",
   DONE="done"
 }
@@ -7,7 +7,7 @@ export class Todo {
     constructor(
       public id:number,
       public title:string,
-      public status:TodoStateEnum,
+      public status:TodoStatusEnum,
       public description?:string
      ) {
     

@@ -1,0 +1,8 @@
+<div class="row"  *ngIf="state">
+    <div class="col">
+      <app-todo-item *ngFor="let todo of  state.todos | filterByStatus:todoStatusEnum.TODO" [todo]="todo"></app-todo-item>
+    </div>
+    <div class="col">
+    <app-todo-item *ngFor="let todo of  state.todos | filterByStatus:todoStatusEnum.DONE" [todo]="todo"></app-todo-item>
+    </div>
+</div>

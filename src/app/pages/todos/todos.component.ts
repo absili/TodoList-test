@@ -3,7 +3,10 @@ import { map, startWith, catchError } from 'rxjs/operators';
 import { DataStateEnum, AppDataState } from 'src/app/state/data.state';
 import { of, Observable } from 'rxjs';
 import { TodoService } from 'src/app/services/todo.mock.service';
-import { TodoStateEnum, Todo } from 'src/app/models/todo.model';
+import { TodoStatusEnum, Todo } from 'src/app/models/todo.model';
+import { TodosState, TodosStateEnum } from 'src/app/store/todos.reducer';
+import { Store } from '@ngrx/store';
+import { GetAllTodosAction } from 'src/app/store/todos.actions';
 
 @Component({
   selector: 'app-todos',
@@ -12,24 +15,23 @@ import { TodoStateEnum, Todo } from 'src/app/models/todo.model';
 })
 export class TodosComponent implements OnInit {
 
-  todos$:Observable<AppDataState<Todo[]>> |null=null;
-  readonly DataStateEnum=DataStateEnum;
-  readonly TodoStateEnum=TodoStateEnum;
+  todosState$:Observable<TodosState>|null=null;
+  readonly TodosStateEnum= TodosStateEnum;
 
-  constructor(private todoService: TodoService){
+
+  constructor(private store:Store<any>) { 
+    this.todosState$=this.store.pipe(
+      map((state)=>  state.todoStateApp)
+    );
   }
+
 
   ngOnInit(){
-    this.todos$ = this.todoService
-        .getTodos()
-        .pipe(
-          map(data=>{
-            console.log(data);
-            return ({dataState:DataStateEnum.LOADED,data:data})
-          }),
-          startWith({dataState:DataStateEnum.LOADING}),
-          catchError(err=>of({dataState:DataStateEnum.ERROR, errorMessage:err.message}))
-        );
+   
+    setTimeout(() => {
+      this.store.dispatch(new GetAllTodosAction({}))
+    }, 1000);
   }
+  
 
 }
