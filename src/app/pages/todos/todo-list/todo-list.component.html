@@ -1,8 +1,18 @@
 <div class="row"  *ngIf="state">
     <div class="col">
-      <app-todo-item *ngFor="let todo of  state.todos | filterByStatus:todoStatusEnum.TODO" [todo]="todo"></app-todo-item>
+      <div class="card m-3">
+        <h5 class="card-header">TODO</h5>
+        <div class="card-body">
+            <app-todo-item *ngFor="let todo of  state.todos | filterByStatus:todoStatusEnum.TODO" [todo]="todo"></app-todo-item>
+        </div>
+      </div>
     </div>
     <div class="col">
-    <app-todo-item *ngFor="let todo of  state.todos | filterByStatus:todoStatusEnum.DONE" [todo]="todo"></app-todo-item>
+      <div class="card m-3">
+        <h5 class="card-header">DONE</h5>
+        <div class="card-body">
+          <app-todo-item *ngFor="let todo of  state.todos | filterByStatus:todoStatusEnum.DONE" [todo]="todo"></app-todo-item>
+        </div>
+      </div>
     </div>
 </div>

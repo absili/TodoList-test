@@ -1,4 +1,4 @@
-export enum DataStateEnum {
+/*export enum DataStateEnum {
     LOADING,
     LOADED,
     ERROR
@@ -8,4 +8,4 @@ export enum DataStateEnum {
     dataState:DataStateEnum,
     data?:T,
     errorMessage?:string
-  }
+  }*/

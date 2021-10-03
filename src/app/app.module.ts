@@ -15,6 +15,9 @@ import { TodosEffects } from './store/todos.effects';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { TodoListComponent } from './pages/todos/todo-list/todo-list.component';
 import { TodoItemComponent } from './pages/todos/todo-item/todo-item.component';
+import { fakeBackendProvider } from './events/fake-backend.interceptor';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TodoAddComponent } from './pages/todos/todo-add/todo-add.component';
 
 
 @NgModule({
@@ -24,10 +27,12 @@ import { TodoItemComponent } from './pages/todos/todo-item/todo-item.component';
     FilterByStatusPipe,
     TodosComponent,
     TodoListComponent,
-    TodoItemComponent
+    TodoItemComponent,
+    TodoAddComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({todoStateApp : todosReducer}),
@@ -35,7 +40,8 @@ import { TodoItemComponent } from './pages/todos/todo-item/todo-item.component';
     StoreDevtoolsModule.instrument()
   ],
   providers: [
-    ...environment.providers
+    ...environment.providers,
+    fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })

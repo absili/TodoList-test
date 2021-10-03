@@ -22,7 +22,7 @@ export class GetAllTodosAction implements Action{
 
 export class GetAllTodosActionSuccess implements Action{
   type: TodosActionsTypes=TodosActionsTypes.GET_ALL_TODOS_SUCCESS;
-  constructor(public payload:Todo[]) {
+  constructor(public payload:any[]) {
   }
 }
 

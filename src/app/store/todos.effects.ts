@@ -44,7 +44,7 @@ export class TodosEffects {
     mergeMap((action) =>
       this.todoService.addTodo((<TodosActions>action).payload).pipe(
         map(todo  => {
-          return  new AddTodosActionSuccess(todo);
+          return new GetAllTodosAction({});// new AddTodosActionSuccess(todo);
         }),
         catchError((err)=>of(new AddTodosActionError(err.message)))
       )
