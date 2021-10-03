@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
  
 
 @Component({
@@ -9,13 +10,16 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   toggleFormAdd = false;
-
-  constructor( ) {
-    
+  currentUrl = '';
+  constructor(private router: Router  ) {
+    this.router.events.subscribe((res) => {
+        this.currentUrl = this.router.url;
+    });
   }
 
   ngOnInit() {
-     
+   // this.currentUrl = this.router.url;
+     //console.log("rt", this.router.url);
   }
   addTodoToggle(){
     this.toggleFormAdd = !this.toggleFormAdd;

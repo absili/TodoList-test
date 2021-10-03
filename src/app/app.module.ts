@@ -18,6 +18,7 @@ import { TodoItemComponent } from './pages/todos/todo-item/todo-item.component';
 import { fakeBackendProvider } from './events/fake-backend.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TodoAddComponent } from './pages/todos/todo-add/todo-add.component';
+import { TodoViewComponent } from './pages/todos/todo-view/todo-view.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { TodoAddComponent } from './pages/todos/todo-add/todo-add.component';
     TodosComponent,
     TodoListComponent,
     TodoItemComponent,
-    TodoAddComponent
+    TodoAddComponent,
+    TodoViewComponent
   ],
   imports: [
     BrowserModule,

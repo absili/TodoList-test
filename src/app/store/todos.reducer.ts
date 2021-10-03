@@ -10,9 +10,9 @@ export enum TodosStateEnum{
 }
 export interface TodosState{
     todos:Todo[],
+    todo?:Todo,
     errorMessage:string,
     dataState:TodosStateEnum,
-    type?: TodosActionsTypes
 }
 
 const initState:TodosState={
@@ -27,43 +27,78 @@ export function todosReducer(state=initState, action:Action) {
       return {
           ...state, 
           dataState:TodosStateEnum.LOADING ,
-          type: action.type
         };
     case TodosActionsTypes.GET_ALL_TODOS_SUCCESS:
       return {
           ...state,
           todos: (<TodosActions>action).payload,
           dataState:TodosStateEnum.LOADED,
-          type: action.type
         };
     case TodosActionsTypes.GET_ALL_TODOS_ERROR:
       return {
           ...state, 
           dataState:TodosStateEnum.ERROR, 
           errorMessage:(<TodosActions>action).payload,
-          type: action.type
         };
     
      /* ADD todos*/
-    case TodosActionsTypes.ADD_TODOS:
+     case TodosActionsTypes.ADD_TODOS:
       return {
         ...state, 
         dataState:TodosStateEnum.LOADING ,
-        type: action.type
       };
     case TodosActionsTypes.ADD_TODOS_SUCCESS:
       return {
           ...state, 
           todos:[...state.todos, (<TodosActions>action).payload], 
           dataState:TodosStateEnum.LOADED,
-          type: action.type
         }
     case TodosActionsTypes.ADD_TODOS_ERROR:
       return {
           ...state, 
           dataState:TodosStateEnum.ERROR, 
           errorMessage:(<TodosActions>action).payload,
-          type: action.type
+        };
+   
+
+         /* UPDATE todos*/
+    case TodosActionsTypes.UPDATE_TODOS:
+      return {
+        ...state, 
+        dataState:TodosStateEnum.LOADING ,
+      };
+    case TodosActionsTypes.UPDATE_TODOS_SUCCESS:
+      return {
+          ...state, 
+          todos:[...state.todos, (<TodosActions>action).payload], 
+          dataState:TodosStateEnum.LOADED,
+        }
+    case TodosActionsTypes.UPDATE_TODOS_ERROR:
+      return {
+          ...state, 
+          dataState:TodosStateEnum.ERROR, 
+          errorMessage:(<TodosActions>action).payload,
+        };
+   
+
+
+           /* VIEW todos*/
+    case TodosActionsTypes.VIEW_TODOS:
+      return {
+        ...state, 
+        dataState:TodosStateEnum.LOADING ,
+      };
+    case TodosActionsTypes.VIEW_TODOS_SUCCESS:
+      return {
+          ...state, 
+          todo: (<TodosActions>action).payload , 
+          dataState:TodosStateEnum.LOADED,
+        }
+    case TodosActionsTypes.VIEW_TODOS_ERROR:
+      return {
+          ...state, 
+          dataState:TodosStateEnum.ERROR, 
+          errorMessage:(<TodosActions>action).payload,
         };
    
    

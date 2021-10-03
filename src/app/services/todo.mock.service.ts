@@ -40,8 +40,12 @@ export class TodoService implements ITodoService {
         return this.http.post("/todos", newTodo);
         //throw new Error("Method not implemented.");
     }
+    getTodo(id:  string):  Observable<Todo> { 
+        return this.http.get("/todos/"+id);
+    }
     updateTodo(todoToUpdate:  Todo):  Observable<string> {
-        throw new Error("Method not implemented.");
+        const id = todoToUpdate.id;
+        return this.http.put("/todos/"+id, todoToUpdate);
     }
     deleteTodo(todoId: number):  Observable<string> {
         throw new Error("Method not implemented.");

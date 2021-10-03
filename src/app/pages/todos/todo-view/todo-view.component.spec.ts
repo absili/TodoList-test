@@ -1,22 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TodoItemComponent } from './todo-item.component';
+import { TodoViewComponent } from './todo-view.component';
+import { RouterModule } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
 
-describe('TodoItemComponent', () => {
-  let component: TodoItemComponent;
-  let fixture: ComponentFixture<TodoItemComponent>;
+describe('TodoViewComponent', () => {
+  let component: TodoViewComponent;
+  let fixture: ComponentFixture<TodoViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TodoItemComponent ] ,
+      declarations: [ TodoViewComponent ],
+      imports: [ RouterModule.forRoot([])],
       providers: [provideMockStore({})]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TodoItemComponent);
+    fixture = TestBed.createComponent(TodoViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

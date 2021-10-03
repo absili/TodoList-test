@@ -11,6 +11,16 @@ export enum TodosActionsTypes{
    ADD_TODOS="[TODOS] add todo",
    ADD_TODOS_SUCCESS="[TODOS] add todo Success",
    ADD_TODOS_ERROR="[TODOS] add  todo Error",
+
+    /* update new todos*/
+    UPDATE_TODOS="[TODOS] update todo",
+    UPDATE_TODOS_SUCCESS="[TODOS] update todo Success",
+    UPDATE_TODOS_ERROR="[TODOS] update  todo Error",
+
+    /* VIEW new todos*/
+    VIEW_TODOS="[TODOS] view todo",
+    VIEW_TODOS_SUCCESS="[TODOS] view todo Success",
+    VIEW_TODOS_ERROR="[TODOS] view  todo Error",
   
 }
 
@@ -53,7 +63,56 @@ export class AddTodosActionError implements Action{
   }
 }
 
+
+
+
+/* update todo  */
+
+export class UpdateTodosAction implements Action{
+  type: TodosActionsTypes=TodosActionsTypes.UPDATE_TODOS;
+  constructor(public payload:any) {
+  }
+}
+
+export class UpdateTodosActionSuccess implements Action{
+  type: TodosActionsTypes=TodosActionsTypes.UPDATE_TODOS_SUCCESS;
+  constructor(public payload:Todo) {
+   // console.log();
+  }
+}
+
+export class UpdateTodosActionError implements Action{
+  type: TodosActionsTypes=TodosActionsTypes.UPDATE_TODOS_ERROR;
+  constructor(public payload:string) {
+  }
+}
+
+
+
+/* VIEW todo  */
+
+export class ViewTodosAction implements Action{
+  type: TodosActionsTypes=TodosActionsTypes.VIEW_TODOS;
+  constructor(public payload:any) {
+  }
+}
+
+export class ViewTodosActionSuccess implements Action{
+  type: TodosActionsTypes=TodosActionsTypes.VIEW_TODOS_SUCCESS;
+  constructor(public payload:Todo) {
+   // console.log();
+  }
+}
+
+export class ViewTodosActionError implements Action{
+  type: TodosActionsTypes=TodosActionsTypes.UPDATE_TODOS_ERROR;
+  constructor(public payload:string) {
+  }
+}
+
 export type TodosActions=
     GetAllTodosAction | GetAllTodosActionSuccess | GetAllTodosActionError
     | AddTodosAction | AddTodosActionSuccess | AddTodosActionError
+    | UpdateTodosAction | UpdateTodosActionSuccess | UpdateTodosActionError
+    | ViewTodosAction | ViewTodosActionSuccess | ViewTodosActionError
 ;

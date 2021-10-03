@@ -25,7 +25,8 @@ export class TodoService implements ITodoService {
     //throw new Error("Method not implemented.");
   }
   updateTodo(todoToUpdate:  Todo):  Observable<string> {
-    throw new Error("Method not implemented.");
+    const id = todoToUpdate.id;
+      return this.http._put(this.host+"/todos/"+id, todoToUpdate);
   }
   deleteTodo(todoId: number):  Observable<string> {
     throw new Error("Method not implemented.");

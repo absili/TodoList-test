@@ -1,7 +1,10 @@
 <div *ngIf="todo" [ngClass]="{'bg-secondary':todo.status==todoStatusEnum.TODO,'bg-success':todo.status==todoStatusEnum.DONE}" class="card text-white mb-3" style="max-width: 18rem;">
-    <div class="card-header">{{todo.id}} - {{todo.status}}</div>
-    <div class="card-body">
+    <div class="card-header" routerLink="/todo/{{todo.id}}">{{todo.id}} - {{todo.status}}</div>
+    <div class="card-body" routerLink="/todo/{{todo.id}}">
         <h5 class="card-title">{{todo.title}}</h5>
         <p class="card-text">{{todo.description}}</p>
+    </div>
+    <div class="card-footer">
+        <button *ngIf="todo.status =='todo'" type="button"  (click)="updateTodo(todo)" class="btn btn-sm btn-warning">Done</button>
     </div>
 </div>

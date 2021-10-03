@@ -12,7 +12,10 @@ import {
 
   AddTodosAction,
   AddTodosActionSuccess,
-  AddTodosActionError
+  AddTodosActionError,
+  UpdateTodosActionError,
+  ViewTodosActionError,
+  ViewTodosActionSuccess
 } from './todos.actions';
 import {catchError, map, mergeMap} from 'rxjs/operators'; 
 import { TodoService } from '../services/todo.mock.service';
@@ -50,6 +53,34 @@ export class TodosEffects {
       )
     )
   );
+
+
+  @Effect()
+ updateTodos$ = this.effectActions$.pipe(
+    ofType(TodosActionsTypes.UPDATE_TODOS),
+    mergeMap((action) =>
+      this.todoService.updateTodo((<TodosActions>action).payload).pipe(
+        map(todo  => {
+          return new GetAllTodosAction({});// new AddTodosActionSuccess(todo);
+        }),
+        catchError((err)=>of(new UpdateTodosActionError(err.message)))
+      )
+    )
+  );
+
+
+  @Effect()
+  ViewTodos$ = this.effectActions$.pipe(
+     ofType(TodosActionsTypes.VIEW_TODOS),
+     mergeMap((action) =>
+       this.todoService.getTodo((<TodosActions>action).payload).pipe(
+         map(todo  => {
+           return   new ViewTodosActionSuccess(todo);
+         }),
+         catchError((err)=>of(new ViewTodosActionError(err.message)))
+       )
+     )
+   );
  
 
 }

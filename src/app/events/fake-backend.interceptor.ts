@@ -4,7 +4,13 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { Todo } from '../models/todo.model';
 
-if(JSON.parse((<any>localStorage.getItem('todos'))) === null){
+
+
+
+
+ //localStorage.setItem('todos', JSON.stringify(null) );
+if(JSON.parse((<any>localStorage.getItem('todos'))) === null ||
+    JSON.parse((<any>localStorage.getItem('todos'))) === []){
     let todos = [
         {
           "id": 1,
@@ -21,11 +27,11 @@ if(JSON.parse((<any>localStorage.getItem('todos'))) === null){
     ]
     localStorage.setItem('todos', JSON.stringify(todos));
   }
-  
+
 // array in local storage for registered users
 let todos: any[] = JSON.parse((<any>localStorage.getItem('todos'))) ||  [];
 //(localStorage.getItem('users')!==null)?JSON.parse(localStorage.getItem('users')): [];
-
+console.log("todooooo" , todos);
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -87,10 +93,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function updateTodo() {
-            const todo = body
-            todos = todos.filter((x: { id: number; }) => x.id !== idFromUrl());
-            todos.push(todo);
-            localStorage.setItem('todos', JSON.stringify(todos));
+            const todo =  JSON.parse( body);
+            console.log(todo);
+             todos = todos.filter((x: { id: number; }) => x.id !== idFromUrl());
+            todos.push( {
+                id: todo.id,
+                title: todo.title,
+                description: todo.description,
+                status: todo.status
+            });
+            console.log("todos push",todos);
+             localStorage.setItem('todos', JSON.stringify(todos));
+            
             return ok();
         }
         function deleteTodo() {

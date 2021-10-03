@@ -26,7 +26,7 @@ export class TodoAddComponent implements OnInit {
   constructor(private store:Store<any>, private formBuilder: FormBuilder ) {
     this.registerForm = this.formBuilder.group({
         title: ['', Validators.required],
-        //description: ['', Validators.required],
+         description: [''],
     });
   }
 

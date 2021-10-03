@@ -1,0 +1,36 @@
+
+
+
+<div class="container"  *ngIf="todosState$ | async as state" [ngSwitch]="state.dataState" >
+    <ng-container *ngSwitchCase="TodosStateEnum.INITIAL">
+      <div class="alert-info">
+        Initial State
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="TodosStateEnum.LOADING">
+      <div class="alert-info">
+        Loading .....
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="TodosStateEnum.ERROR">
+      <div class="alert-danger">
+        {{state.errorMessage |json}}
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="TodosStateEnum.LOADED">
+        <div class="row"  *ngIf="state && state.todo">
+            
+            <div  [ngClass]="{'bg-secondary': state.todo.status==todoStatusEnum.TODO,'bg-success': state.todo.status==todoStatusEnum.DONE}" class="card text-white mb-3" style="max-width: 18rem;">
+                <div class="card-header" >
+                    <h5 class="card-title">{{ state.todo.id}} - {{ state.todo.title}}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ state.todo.description}}</p>
+                </div>
+                <div class="card-footer">
+                    <button    class="btn btn-sm btn-info">{{ state.todo.status}}</button>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+  </div>

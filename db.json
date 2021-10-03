@@ -1,16 +1,10 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Do homework",
-      "status": "todo",
-      "description": "do home work"
-    },
-    {
+      "description": "do   work",
       "id": 2,
-      "title": "Do  work",
-      "status": "todo",
-      "description": "do   work"
+      "status": "done",
+      "title": "Do  work"
     },
     {
       "id": 3,
